@@ -1,0 +1,22 @@
+table{
+    text-align: center;
+    background-color: rgba(255, 113, 57, 0.377);
+}
+th{
+    color: darkgreen;
+}
+tbody{
+    background-color: bisque;
+}
+.counter{
+    padding: 10px;
+    background-color: #000000bf;
+    color: #ffab2fc7;
+    text-align: center;
+}
+td:nth-child(2n){
+    color: blueviolet;
+}
+td:nth-child(2n-1){
+    color: chartreuse;
+}
