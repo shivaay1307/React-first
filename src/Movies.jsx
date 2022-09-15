@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import { getMovies } from "./MovieDatabase";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Pagination from "./components/Pagination";
+import { paginate } from './components/Paginate';
 import "./styles.css";
 
 class Movies extends Component {
   state = {
-    movies: getMovies()
+    movies: getMovies(),
+    pageSize: 15,
+    currentPage: 1
   };
 
-  handleDelete = (movie) => {
+  handleDelete = movie => {
     const movies = this.state.movies.filter((m) => m.id !== movie.id);
     this.setState({ movies });
   }
@@ -16,11 +20,18 @@ class Movies extends Component {
   //   let delAll = ('');
   //   this.setState(delAll);
   // }
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  }
 
   render() {
     const { length: count } = this.state.movies;
+    const { pageSize, currentPage, movies: allMovies} = this.state;
 
     if (count === 0) return <p> There are no movies</p>
+
+    const movies = paginate(allMovies, currentPage, pageSize);
+
     return (
       <React.Fragment>
         <div className="counter">
@@ -46,7 +57,7 @@ class Movies extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.movies.map((movie) => (
+            {movies.map((movie) => (
               <tr className="contentEven" key={movie.id}>
                 <td className="fs-6 p-6">{movie.id}</td>
                 <td className="fs-6 p-6">{movie.title}</td>
@@ -57,15 +68,21 @@ class Movies extends Component {
                   <button
                     type="button"
                     onClick={() => this.handleDelete(movie)}
-                    class="btn btn-danger btn-sm"
+                    className="btn btn-danger btn-sm"
                   >
                     Delete
                   </button>
                 </td>
-              </tr>
+              </tr> 
             ))}
           </tbody>
         </table>
+        <Pagination
+          className="page"
+          itemsCount={count}
+          pageSize={pageSize}
+          currentPage={currentPage}
+          onPageChange={this.handlePageChange} />
       </React.Fragment>
     );
   }
