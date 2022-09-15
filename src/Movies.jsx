@@ -5,22 +5,22 @@ import "./styles.css";
 
 class Movies extends Component {
   state = {
-    movies: getMovies(),
-    // delAll: null
+    movies: getMovies()
   };
+
   handleDelete = (movie) => {
     const movies = this.state.movies.filter((m) => m.id !== movie.id);
     this.setState({ movies });
-  };
-  
-  // handleAllDelete = (delAll) => {
-  //   const movies = (this.state.movies = (this.setState.delAll));
+  }
+  // handleClear = () => {
+  //   let delAll = ('');
+  //   this.setState(delAll);
   // }
 
   render() {
     const { length: count } = this.state.movies;
 
-    if (count === 0) return <p> There are no movies</p>;
+    if (count === 0) return <p> There are no movies</p>
     return (
       <React.Fragment>
         <div className="counter">
@@ -35,13 +35,13 @@ class Movies extends Component {
               <th className="p-6 fs-2">Genres</th>
               <th className="p-6 fs-2">Actors</th>
               <th>
-                <button
+                {/* <button
                   type="button"
-                  // onClick={() => this.handleAllDelete(delAll)}
+                  onClick={() => this.handleClear()}
                   class="btn btn-danger btn-sm"
                 >
                   Delete All
-                </button>
+                </button>  */}
               </th>
             </tr>
           </thead>
