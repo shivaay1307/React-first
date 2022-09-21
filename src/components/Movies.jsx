@@ -6,14 +6,14 @@ import Pagination from "../components/common/pagination";
 import { paginate } from "../utils/paginate";
 import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
-import "../components/movies.css"
+import "../components/styles/movies.css";
 
 class Movies extends Component {
   state = {
     movies: [],
     genres: [],
     currentPage: 1,
-    pageSize: 14,
+    pageSize: 12,
     sortColumn: { path: "title", order: "asc" }
   };
 
@@ -71,7 +71,7 @@ class Movies extends Component {
 
     return (
       <div className="row">
-        <div className="col-3 bg-dark sidebar">
+        <div className="col-2 bg-secondary sidebar">
           <ListGroup
             items={this.state.genres}
             selectedItem={this.state.selectedGenre}
