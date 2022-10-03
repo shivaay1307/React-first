@@ -658,38 +658,35 @@ const movies = [
         actors: "Steve Carell, Kristen Wiig, Benjamin Bratt, Miranda Cosgrove",
         plot: "When Gru, the world's most super-bad turned super-dad has been recruited by a team of officials to stop lethal muscle and a host of Gru's own, He has to fight back with new gadgetry, cars, and more minion madness.",
         posterUrl: "https://images-na.ssl-images-amazon.com/images/M/MV5BMjExNjAyNTcyMF5BMl5BanBnXkFtZTgwODQzMjQ3MDE@._V1_SX300.jpg"
-    },
-
+    }
 ]
 
 export function getMovies() {
     return movies;
 }
 
-// export function getMovie(id) {
-//     return movies.find(m => m._id === id);
-//   }
+export function getMovie(id) {
+    return movies.find(m => m._id === id);
+}
 
-//   export function saveMovie(movie) {
-//     let movieInDb = movies.find(m => m._id === movie._id) || {};
-//     movieInDb.name = movie.name;
-//     movieInDb.genre = genresAPI.genres.find(g => g._id === movie.genreId);
-//     movieInDb.numberInStock = movie.numberInStock;
-//     movieInDb.dailyRentalRate = movie.dailyRentalRate;
+export function saveMovie(movie) {
+    let movieInDb = movies.find(m => m._id === movie._id) || {};
+    movieInDb.title = movie.title;
+    movieInDb.genre = genres.find(g => g._id === movie.genreId);
+    movieInDb.year = movie.year;
+    movieInDb.director = movie.director;
+    if (!movieInDb._id) {
+        movieInDb._id = Date.now().toString();
+        movies.push(movieInDb);
+    }
+    return movieInDb;
+}
 
-//     if (!movieInDb._id) {
-//       movieInDb._id = Date.now();
-//       movies.push(movieInDb);
-//     }
-
-//     return movieInDb;
-//   }
-
-//   export function deleteMovie(id) {
-//     let movieInDb = movies.find(m => m._id === id);
-//     movies.splice(movies.indexOf(movieInDb), 1);
-//     return movieInDb;
-//   }
+  export function deleteMovie(id) {
+    let movieInDb = movies.find(m => m._id === id);
+    movies.splice(movies.indexOf(movieInDb), 1);
+    return movieInDb;
+  }
 
 export const genres = [
     { _id: "5b21ca3eeb7f6fbccd471818", name: "Comedy" },
@@ -699,4 +696,4 @@ export const genres = [
 
 export function getGenres() {
     return genres.filter(g => g);
-}
+};

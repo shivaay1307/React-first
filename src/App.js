@@ -7,6 +7,7 @@ import Customers from "./components/customer";
 import MovieForm from './components/movieForm';
 import Navbar from './components/common/navbar';
 import LoginForm from "./components/common/loginForm";
+import Register from "./components/common/register";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <Routes className="conatiner">
           <Route path="/movies/:id" element={<MovieForm />} />
           <Route path="/Login" element={<LoginForm />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/" element={<Movies />} />
           <Route path="/movies" element={<Movies />} />
           <Route path="/customers" element={<Customers />} />

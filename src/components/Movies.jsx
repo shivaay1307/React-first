@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { getMovies, getGenres } from "../MovieDatabase";
 import MoviesTable from "./moviesTable";
 import ListGroup from "../components/common/listGroup";
@@ -13,13 +14,12 @@ class Movies extends Component {
     movies: [],
     genres: [],
     currentPage: 1,
-    pageSize: 12,
+    pageSize: 11,
     sortColumn: { path: "title", order: "asc" }
   };
 
   componentDidMount() {
     const genres = [{ _id: "", name: "All Genres" }, ...getGenres()];
-
     this.setState({ movies: getMovies(), genres });
   }
 
@@ -79,6 +79,9 @@ class Movies extends Component {
           />
         </div>
         <div className="col">
+          <Link to="/movies/new" className="btn btn-primary btn-xxl mt-2">
+            New Movie
+          </Link>
           <h1 className="heading">Showing {totalCount} movies in the database.</h1>
           <MoviesTable
             movies={movies}
